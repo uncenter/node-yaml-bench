@@ -24,3 +24,25 @@ To export the results, use:
 ```sh
 pnpm export:all
 ```
+
+## Benchmark.js
+
+I wasn't sure how accurate using `hyperfine` for Node.js benchmarks was especially since the scripts would have to read the input file before each iteration, so I added tests using [benchmark.js](https://benchmarkjs.com/).
+
+### Results
+
+For the **lockfile** test (`node benchmarkjs-lockfile.js`)
+
+```
+[js-yaml] x 75.13 ops/sec ±4.82% (65 runs sampled)
+[yaml] x 5.97 ops/sec ±3.53% (20 runs sampled)
+The fastest was [js-yaml].
+```
+
+For the **workflow** test (`node benchmarkjs-workflow.js`)
+
+```
+[js-yaml] x 35,949 ops/sec ±1.97% (97 runs sampled)
+[yaml] x 3,708 ops/sec ±3.15% (94 runs sampled)
+The fastest was [js-yaml].
+```
