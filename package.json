@@ -1,0 +1,11 @@
+{
+	"type": "module",
+	"scripts": {
+		"bench": "hyperfine --warmup 20 'node js-yaml.js' 'node yaml.js'",
+		"bench:export": "hyperfine --export-markdown RESULTS.md --warmup 20 'node js-yaml.js' 'node yaml.js'"
+	},
+	"dependencies": {
+		"js-yaml": "^4.1.0",
+		"yaml": "^2.3.4"
+	}
+}
