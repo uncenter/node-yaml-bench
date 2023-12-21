@@ -1,18 +1,11 @@
 {
 	"type": "module",
 	"scripts": {
-		"bench:lockfile": "hyperfine --warmup 20 'node js-yaml-lockfile.js' 'node yaml-lockfile.js'",
-		"export:lockfile": "pnpm bench:lockfile --export-markdown results/pnpm-lockfile.md",
-		"bench:workflow": "hyperfine --warmup 20 'node js-yaml-workflow.js' 'node yaml-workflow.js'",
-		"export:workflow": "pnpm bench:workflow --export-markdown results/pnpm-workflow.md",
-		"bench:all": "pnpm bench:lockfile && pnpm bench:workflow",
-		"export:all": "pnpm export:lockfile && pnpm export:workflow"
+		"bench": "node bench.js"
 	},
 	"dependencies": {
+		"@uncenter/quickbench": "^0.1.0",
 		"js-yaml": "^4.1.0",
 		"yaml": "^2.3.4"
-	},
-	"devDependencies": {
-		"benchmark": "^2.1.4"
 	}
 }

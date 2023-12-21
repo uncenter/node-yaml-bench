@@ -4,45 +4,19 @@ A performance benchmark comparing the [yaml](https://www.npmjs.com/package/yaml)
 
 ## Results
 
-<!-- prettier-ignore -->
-| File | File Length | Results |
-|:---|---:|---:|
-| `resources/pnpm-lockfile.yaml` | 17,788 lines | [results/pnpm-lockfile.md](results/pnpm-lockfile.md) |
-| `resources/pnpm-workflow.yaml` | 56 lines | [results/pnpm-workflow.md](results/pnpm-workflow.md) |
-
-## Usage
-
-> [!IMPORTANT]
-> You must have [hyperfine](https://github.com/sharkdp/hyperfine) installed to use the following command.
-
-```sh
-pnpm bench:all
 ```
-
-To export the results, use:
-
-```sh
-pnpm export:all
-```
-
-## Benchmark.js
-
-I wasn't sure how accurate using `hyperfine` for Node.js benchmarks was especially since the scripts would have to read the input file before each iteration, so I added tests using [benchmark.js](https://benchmarkjs.com/).
-
-### Results
-
-For the **lockfile** test (`node benchmarkjs-lockfile.js`)
-
-```
-[js-yaml] x 75.13 ops/sec ±4.82% (65 runs sampled)
-[yaml] x 5.97 ops/sec ±3.53% (20 runs sampled)
-The fastest was [js-yaml].
-```
-
-For the **workflow** test (`node benchmarkjs-workflow.js`)
-
-```
-[js-yaml] x 35,949 ops/sec ±1.97% (97 runs sampled)
-[yaml] x 3,708 ops/sec ±3.15% (94 runs sampled)
-The fastest was [js-yaml].
+┌─────────┬───────────┬─────────┬────────────────────┬──────────┬─────────┐
+│ (index) │ Task Name │ ops/sec │ Average Time (ns)  │  Margin  │ Samples │
+├─────────┼───────────┼─────────┼────────────────────┼──────────┼─────────┤
+│    0    │ 'js-yaml' │  '77'   │ 12829997.823024409 │ '±3.94%' │   39    │
+│    1    │  'yaml'   │   '6'   │ 163759429.19701338 │ '±4.10%' │   10    │
+└─────────┴───────────┴─────────┴────────────────────┴──────────┴─────────┘
+Fastest function for resource 'lockfile' was 'js-yaml'.
+┌─────────┬───────────┬──────────┬────────────────────┬──────────┬─────────┐
+│ (index) │ Task Name │ ops/sec  │ Average Time (ns)  │  Margin  │ Samples │
+├─────────┼───────────┼──────────┼────────────────────┼──────────┼─────────┤
+│    0    │ 'js-yaml' │ '35,378' │ 28265.74288178056  │ '±0.44%' │  17690  │
+│    1    │  'yaml'   │ '3,497'  │ 285917.61294605397 │ '±2.30%' │  1749   │
+└─────────┴───────────┴──────────┴────────────────────┴──────────┴─────────┘
+Fastest function for resource 'workflow' was 'js-yaml'.
 ```
